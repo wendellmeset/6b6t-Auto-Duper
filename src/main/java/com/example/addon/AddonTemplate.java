@@ -20,16 +20,10 @@ public class AddonTemplate extends MeteorAddon {
 
     @Override
     public void onInitialize() {
-        LOG.info("Initializing Meteor Addon Template");
+        LOG.info("Initializing Meteor 6b6t Crystal Duper Addon");
 
         // Modules
         Modules.get().add(new ModuleExample());
-
-        // Commands
-        Commands.add(new CommandExample());
-
-        // HUD
-        Hud.get().register(HudExample.INFO);
     }
 
     @Override
