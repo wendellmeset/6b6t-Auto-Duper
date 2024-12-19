@@ -15,20 +15,13 @@ import org.slf4j.Logger;
 
 public class AddonTemplate extends MeteorAddon {
     public static final Logger LOG = LogUtils.getLogger();
-    public static final Category CATEGORY = new Category("Example");
-    public static final HudGroup HUD_GROUP = new HudGroup("Example");
 
     @Override
     public void onInitialize() {
         LOG.info("Initializing Meteor 6b6t Crystal Duper Addon");
 
         // Modules
-        Modules.get().add(new ModuleExample());
-    }
-
-    @Override
-    public void onRegisterCategories() {
-        Modules.registerCategory(CATEGORY);
+        Modules.get().add(new CrystalDupe());
     }
 
     @Override
@@ -38,6 +31,6 @@ public class AddonTemplate extends MeteorAddon {
 
     @Override
     public GithubRepo getRepo() {
-        return new GithubRepo("MeteorDevelopment", "meteor-addon-template");
+        return new GithubRepo("wendellmeset", "6b6t-Auto-Duper");
     }
 }
