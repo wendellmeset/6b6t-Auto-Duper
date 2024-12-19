@@ -6,8 +6,10 @@ import meteordevelopment.meteorclient.settings.DoubleSetting;
 import meteordevelopment.meteorclient.settings.Setting;
 import net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket;
 import net.minecraft.util.Hand;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.decoration.EndCrystalEntity;
 import net.minecraft.client.network.ClientPlayNetworkHandler.*;
+import net.minecraft.entity.Entity;
 import meteordevelopment.meteorclient.settings.SettingGroup;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.hit.EntityHitResult;
@@ -29,24 +31,6 @@ public class CrystalDupe extends Module {
         .build()
     );
 
-    public void sendPacket(EventSendPacket event) {
-        if (event.getPacket() instanceof PlayerInteractEntityC2SPacket) {
-            PlayerInteractEntityC2SPacket packet = (PlayerInteractEntityC2SPacket) event.getPacket();
-            if (packet.getType() == PlayerInteractEntityC2SPacket.InteractionType.ATTACK) {
-            	this.doCritical();
-            	
-            	/* Lets fake some extra paricles to make the player feel good */
-            	Entity e = packet.getEntity(mc.world);
-            	Random r = new Random();
-                for (int i = 0; i < 10; i++) {
-                	mc.particleManager.addParticle(ParticleTypes.CRIT, e.getX(), e.getY() + e.getHeight() / 2, e.getZ(),
-                			r.nextDouble() - 0.5, r.nextDouble() - 0.5, r.nextDouble() - 0.5);
-                }
-            }
-        }
-    }
- 
-
     private long lastActionTime;
 
     public CrystalDupe() {
@@ -64,15 +48,12 @@ public class CrystalDupe extends Module {
         double elapsedTime = (System.currentTimeMillis() - lastActionTime) / 1000.0;
 
         if (elapsedTime >= delay.get()) {
-            // Get the entity the player is looking at
-            EntityHitResult hitResult = (EntityHitResult) mc.crosshairTarget;
-            
-            if (hitResult != null && hitResult.getType() == HitResult.Type.ENTITY) {
-                // Check if the entity is an End Crystal
-                if (hitResult.getEntity() instanceof EndCrystalEntity target) {
-                    // Send the attack packet to break the End Crystal
-                    sendPacket(PlayerInteractEntityC2SPacket.attack(target, mc.player.isSneaking()));
-                }
+            // ATTACK!!
+            MinecraftClient mc = MinecraftClient.getInstance();
+            if (mc.player != null) {
+                // Simulate an attack (left-click action)
+                mc.player.swingHand(mc.player.getActiveHand());
+                mc.interactionManager.attackBlock(mc.crosshairTarget.getBlockPos(), mc.crosshairTarget.getSide());
             }
             
             // Disable the module after clicking
