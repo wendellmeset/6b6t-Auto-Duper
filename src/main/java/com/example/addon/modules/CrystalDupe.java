@@ -51,9 +51,11 @@ public class CrystalDupe extends Module {
             // ATTACK!!
             MinecraftClient client = MinecraftClient.getInstance();
             if (client != null && client.currentScreen == null) { // Only if no GUI is open
-                // Simulating the left mouse click
-                client.mouseHandler.onMouseButton(0, 1); // 0 = Left Mouse Button, 1 = Pressed state
-                client.mouseHandler.onMouseButton(0, 0); // 0 = Left Mouse Button, 0 = Released state
+                // Simulate pressing the left mouse button
+                robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+    
+                // Simulate releasing the left mouse button
+                robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
             }
             
             // Disable the module after clicking
