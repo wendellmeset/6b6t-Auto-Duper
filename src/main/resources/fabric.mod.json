@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "id": "addon-template",
-  "version": "${version}",
-  "name": "Addon Template",
-  "description": "An addon template for Meteor Client addons.",
+  "id": "6b6tcrystaldupe",
+  "version": "1.0",
+  "name": "6b6t Crystal Duper",
+  "description": "Auto times the 6b6t crystal dupe!.",
   "authors": [
-    "seasnail"
+    "wendellmeset"
   ],
   "contact": {
-    "repo": "https://github.com/MeteorDevelopment/meteor-addon-template"
+    "repo": "https://github.com/wendellmeset/6b6t-Auto-Duper"
   },
   "icon": "assets/template/icon.png",
   "environment": "client",
