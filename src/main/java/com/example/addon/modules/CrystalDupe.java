@@ -51,9 +51,9 @@ public class CrystalDupe extends Module {
             // ATTACK!!
             MinecraftClient mc = MinecraftClient.getInstance();
             if (mc.player != null) {
-                // Simulate an attack (left-click action)
-                mc.player.swingHand(mc.player.getActiveHand());
-                mc.interactionManager.attackBlock(mc.crosshairTarget.getBlockPos(), mc.crosshairTarget.getSide());
+                // Simulate a left-click (attack)
+                mc.options.attackKey.setPressed(true); // Press the left-click key
+                mc.options.attackKey.setPressed(false); // Release the left-click key
             }
             
             // Disable the module after clicking
