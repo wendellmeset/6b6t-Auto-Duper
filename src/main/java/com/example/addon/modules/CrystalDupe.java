@@ -29,6 +29,25 @@ public class CrystalDupe extends Module {
         .build()
     );
 
+    @Subscribe
+    public void sendPacket(EventSendPacket event) {
+        if (event.getPacket() instanceof PlayerInteractEntityC2SPacket) {
+            PlayerInteractEntityC2SPacket packet = (PlayerInteractEntityC2SPacket) event.getPacket();
+            if (packet.getType() == PlayerInteractEntityC2SPacket.InteractionType.ATTACK) {
+            	this.doCritical();
+            	
+            	/* Lets fake some extra paricles to make the player feel good */
+            	Entity e = packet.getEntity(mc.world);
+            	Random r = new Random();
+                for (int i = 0; i < 10; i++) {
+                	mc.particleManager.addParticle(ParticleTypes.CRIT, e.getX(), e.getY() + e.getHeight() / 2, e.getZ(),
+                			r.nextDouble() - 0.5, r.nextDouble() - 0.5, r.nextDouble() - 0.5);
+                }
+            }
+        }
+    }
+ 
+
     private long lastActionTime;
 
     public CrystalDupe() {
