@@ -40,9 +40,22 @@ public class CrystalDupe extends Module {
         double elapsedTime = (System.currentTimeMillis() - lastActionTime) / 1000.0;
 
         if (elapsedTime >= delay.get()) {
-            // Perform the left mouse button click
-            MinecraftClient.getInstance().interactionManager.attackBlock(MinecraftClient.getInstance().player.getBlockPos(), MinecraftClient.getInstance().player.getHorizontalFacing());
-
+            // Get the entity the player is looking at
+            EntityHitResult hitResult = (EntityHitResult) mc.crosshairTarget;
+            
+            if (hitResult != null && hitResult.getType() == HitResult.Type.ENTITY) {
+                // Check if the entity is an End Crystal
+                if (hitResult.getEntity() instanceof EndCrystalEntity target) {
+                    // Send the attack packet to break the End Crystal
+                    sendPacket(PlayerInteractEntityC2SPacket.attack(target, mc.player.isSneaking()));
+            
+                    // Optional: Render swing animation if enabled
+                    if (swing.get()) {
+                        clientSwing(swingHand.get(), Hand.MAIN_HAND);
+                    }
+                }
+            }
+            
             // Disable the module after clicking
             toggle();
         }
