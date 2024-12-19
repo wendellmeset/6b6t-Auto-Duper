@@ -4,6 +4,7 @@ import com.example.addon.AddonTemplate;
 import meteordevelopment.meteorclient.events.world.TickEvent;
 import meteordevelopment.meteorclient.settings.DoubleSetting;
 import meteordevelopment.meteorclient.settings.Setting;
+import net.minecraft.entity.decoration.EndCrystalEntity;
 import meteordevelopment.meteorclient.settings.SettingGroup;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.meteorclient.systems.modules.Categories;
@@ -48,11 +49,6 @@ public class CrystalDupe extends Module {
                 if (hitResult.getEntity() instanceof EndCrystalEntity target) {
                     // Send the attack packet to break the End Crystal
                     sendPacket(PlayerInteractEntityC2SPacket.attack(target, mc.player.isSneaking()));
-            
-                    // Optional: Render swing animation if enabled
-                    if (swing.get()) {
-                        clientSwing(swingHand.get(), Hand.MAIN_HAND);
-                    }
                 }
             }
             
