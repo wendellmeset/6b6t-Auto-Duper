@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "6b6tcrystaldupe",
+  "id": "crystaldupe",
   "version": "1.0",
   "name": "6b6t Crystal Duper",
   "description": "Auto times the 6b6t crystal dupe!.",
@@ -22,7 +22,7 @@
   },
   "depends": {
     "java": ">=21",
-    "minecraft": ["${mc_version}"],
+    "minecraft": ["1.21.1"],
     "meteor-client": "*"
   }
 }
