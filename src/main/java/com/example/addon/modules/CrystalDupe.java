@@ -29,7 +29,6 @@ public class CrystalDupe extends Module {
         .build()
     );
 
-    @Subscribe
     public void sendPacket(EventSendPacket event) {
         if (event.getPacket() instanceof PlayerInteractEntityC2SPacket) {
             PlayerInteractEntityC2SPacket packet = (PlayerInteractEntityC2SPacket) event.getPacket();
