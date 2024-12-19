@@ -7,7 +7,7 @@ import meteordevelopment.meteorclient.settings.Setting;
 import net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket;
 import net.minecraft.util.Hand;
 import net.minecraft.entity.decoration.EndCrystalEntity;
-import net.minecraft.client.network.ClientPlayNetworkHandler.sendPacket;
+net.minecraft.client.network.ClientPlayNetworkHandler.*;
 import meteordevelopment.meteorclient.settings.SettingGroup;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.hit.EntityHitResult;
