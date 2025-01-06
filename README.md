@@ -1,3 +1,5 @@
+# This project was abandoned as it seems that 6b6t patched the crystal dupe rather recently.
+
 # Meteor Addon Template
 
 A template to allow easy usage of the Meteor Addon API.
